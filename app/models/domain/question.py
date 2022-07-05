@@ -18,4 +18,4 @@ class Answer(BaseModel):
 
 
 class Solution(BaseModel):
-    solution: dict = Field(...,)
+    solution: dict = Field(..., alias='solution')
