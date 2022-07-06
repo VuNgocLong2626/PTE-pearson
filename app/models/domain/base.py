@@ -2,16 +2,16 @@ from pydantic import BaseModel, Field
 
 
 class PartitionKey(BaseModel):
-    pk: str = Field(..., alias="pk")
+    pk: str = Field(..., alias="PK")
 
 
 class SortKey(BaseModel):
-    sk: str = Field(..., alias="sk")
+    sk: str = Field(..., alias="SK")
 
 
 class GlobalSecondaryIndexesPartitionKey(BaseModel):
-    gsi1pk: str = Field(..., alias="gsi1pk")
+    gsi1pk: str = Field(..., alias="GSI1PK")
 
 
 class GlobalSecondaryIndexesSortKey(BaseModel):
-    gsi1sk: str = Field(..., alias="gsi1sk")
+    gsi1sk: str = Field(..., alias="GSI1SK")

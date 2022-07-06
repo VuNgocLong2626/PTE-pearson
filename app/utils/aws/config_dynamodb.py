@@ -10,3 +10,5 @@ client = boto3.client(
     'dynamodb',
     region_name='ap-southeast-1'
 )
+
+table = resource.Table("PTE")

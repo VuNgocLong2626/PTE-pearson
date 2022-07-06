@@ -4,25 +4,25 @@ from pydantic import BaseModel, Field
 class NamePart(BaseModel):
     name_part: str = Field(
         min_length=2, max_length=20,
-        alias='name_part'
+        alias='NamePart'
     )
 
 
 class Title(BaseModel):
-    title: str = Field(..., alias="title")
+    title: str = Field(..., alias="Title")
 
 
 class Time(BaseModel):
-    time: str = Field(..., alias='time')
+    time: str = Field(..., alias='Time')
 
 
 class Scores(BaseModel):
-    scores: int = Field(..., alias='scores')
+    scores: int = Field(..., alias='Scores')
 
 
 class QuantityQuestion(BaseModel):
-    quantity_question: int = Field(..., alias='quantity_question')
+    quantity_question: int = Field(..., alias='QuantityQuestion')
 
 
 class NumberOfCorrectAnswer(BaseModel):
-    number_of_correct_answer: int = Field(alias='number_of_correct_answer')
+    number_of_correct_answer: int = Field(alias='NumberOfCorrectAnswer')
