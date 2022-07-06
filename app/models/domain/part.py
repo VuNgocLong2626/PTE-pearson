@@ -1,28 +1,33 @@
 from pydantic import BaseModel, Field
+from datetime import time as _time
 
 
-class NamePart(BaseModel):
-    name_part: str = Field(
+class PartName(BaseModel):
+    part_name: str = Field(
         min_length=2, max_length=20,
-        alias='name_part'
+        alias='PartName'
     )
 
 
 class Title(BaseModel):
-    title: str = Field(..., alias="title")
+    title: str = Field(..., alias="Title")
 
 
 class Time(BaseModel):
-    time: str = Field(..., alias='time')
+    time: _time = Field(
+        ...,
+        example="00:12:00",
+        alias='Time'
+    )
 
 
 class Scores(BaseModel):
-    scores: int = Field(..., alias='scores')
+    scores: int = Field(..., alias='Scores')
 
 
-class QuantityQuestion(BaseModel):
-    quantity_question: int = Field(..., alias='quantity_question')
+class QuestionQuantity(BaseModel):
+    question_quantity: int = Field(..., alias='QuestionQuantity')
 
 
 class NumberOfCorrectAnswer(BaseModel):
-    number_of_correct_answer: int = Field(alias='number_of_correct_answer')
+    number_of_correct_answer: int = Field(alias='NumberOfCorrectAnswer')
