@@ -5,7 +5,7 @@ from datetime import time as _time
 class PartName(BaseModel):
     part_name: str = Field(
         min_length=2, max_length=20,
-        alias='PartName'
+        alias='NamePart'
     )
 
 
@@ -14,19 +14,15 @@ class Title(BaseModel):
 
 
 class Time(BaseModel):
-    time: _time = Field(
-        ...,
-        example="00:12:00",
-        alias='Time'
-    )
+    time: str = Field(..., alias='Time')
 
 
 class Scores(BaseModel):
     scores: int = Field(..., alias='Scores')
 
 
-class QuestionQuantity(BaseModel):
-    question_quantity: int = Field(..., alias='QuestionQuantity')
+class QuantityQuestion(BaseModel):
+    quantity_question: int = Field(..., alias='QuantityQuestion')
 
 
 class NumberOfCorrectAnswer(BaseModel):

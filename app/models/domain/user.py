@@ -3,40 +3,39 @@ from pydantic import (
     Field,
     EmailStr
 )
-from datetime import date
 
 
 class UserUsername(BaseModel):
     username: str = Field(
         min_length=2, max_length=20,
-        alias='username'
+        alias='Username'
     )
 
 
 class UserPassWord(BaseModel):
     password: str = Field(
-        min_length=8, max_length=20,
-        alias='password'
+        None,
+        alias='Password'
     )
 
 
 class DayOfBirth(BaseModel):
-    dob: date = Field(None, alias='dob')
+    dob: str = Field(None, alias='DayOfBirth')
 
 
 class FirstName(BaseModel):
     first_name: str = Field(
         min_length=2,
-        alias='first_name'
+        alias='FirstName'
     )
 
 
 class LastName(BaseModel):
     last_name: str = Field(
         min_length=2,
-        alias='last_name'
+        alias='LastName'
     )
 
 
 class Email(BaseModel):
-    email: EmailStr = Field(alias='email')
+    email: EmailStr = Field(alias='Email')

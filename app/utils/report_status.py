@@ -34,4 +34,17 @@ def delete_done(name: str):
         detail=f"Delete Done {name}",
         headers={"WWW-Authenticate": "Bearer"},
     )
+<<<<<<< HEAD
     raise credentials_exception
+=======
+    raise credentials_exception
+
+
+def create_done(name: str):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_200_OK,
+        detail=f"Create Done {name}",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    raise credentials_exception
+>>>>>>> dev
