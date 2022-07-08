@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "boto3typed.boto3-ide",
+        "esbenp.prettier-vscode"
+    ]
+}

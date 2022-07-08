@@ -14,8 +14,8 @@ class Scores(BaseModel):
 
 
 class Answer(BaseModel):
-    answer: dict = Field(..., alias='answer')
+    answer: dict = Field(..., alias='Answer')
 
 
 class Solution(BaseModel):
-    solution: dict = Field(..., alias='solution')
+    solution: dict = Field(..., alias='Solution')
