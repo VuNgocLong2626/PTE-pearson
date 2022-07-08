@@ -20,8 +20,6 @@ class UserEntity(
         return sk
 
     def get_pk_and_sk(username: str):
-        pk_and_sk = {
-            'pk': f'USER#{username}',
-            'sk': f'USER#{username}'
-        }
-        return pk_and_sk
+        pk = UserEntity.get_pk(username)
+        sk = UserEntity.get_sk(username)
+        return pk, sk

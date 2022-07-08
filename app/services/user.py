@@ -25,9 +25,9 @@ class UserService():
         username: str
     ) -> dict:
         try:
-            user = _user.UserEntity.get_pk_and_sk(username)
+            pk, sk = _user.UserEntity.get_pk_and_sk(username)
             response = user_repositories.get_info_user(
-                user.get('pk'), user.get('pk')
+                pk, sk
             )[0]
             return response
         except Exception:
@@ -38,9 +38,9 @@ class UserService():
         username: str
     ) -> None:
         self.get_info_user(username)
-        user = _user.UserEntity.get_pk_and_sk(username)
+        pk, sk = _user.UserEntity.get_pk_and_sk(username)
         _ = user_repositories.delete_user_by_username(
-            user.get('pk'), user.get('pk')
+            pk, sk
         )
         report_status.delete_done("User")
 
