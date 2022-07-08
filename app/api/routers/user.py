@@ -1,45 +1,43 @@
 from fastapi import APIRouter
-from app.models.schemas import user as _user_domain
+from app.models.schemas import user as _user_schemas
 from app.services.user import UserService
 
 
-router = APIRouter(
-    prefix="/user",
-    tags=["User"],
-    responses={404: {"description": "Not found"}}
-)
+router = APIRouter()
+user_service = UserService()
 
 
 @router.post(
-    "/create",
-    response_model=_user_domain.UserDetail
+    "/create-user",
+    response_model=_user_schemas.UserDetail
 )
-async def create_user(user_in: _user_domain.UserCreate):
-    respon = UserService.create_user(user_in)
-    return respon
+async def create_user(user_in: _user_schemas.UserCreate):
+    response = user_service.create_user(user_in)
+    return response
 
 
 @router.get(
-    "/get-info",
+    "/get-info-by-username",
     response_model_by_alias=True,
-    response_model=_user_domain.UserDetail
+    response_model=_user_schemas.UserDetail
 )
 async def get_info_user(username: str):
-    respon = UserService.get_info_user(username)
+    respon = user_service.get_info_user(username)
     return respon
 
 
 @router.delete(
-    "/delete-user"
+    "/delete-user-by-username"
 )
 async def delete_user(username: str):
-    respon = UserService.delete_user_by_username(username)
+    respon = user_service.delete_user_by_username(username)
     return respon
 
 
 @router.put(
-    "/update-info"
+    "/update-info",
+    response_model=_user_schemas.UserDetail
 )
-async def update_info_user(user_in: _user_domain.UserUpdateInfo):
-    respon = UserService.update_user_info(user_in)
+async def update_info_user(user_in: _user_schemas.UserUpdateInfo):
+    respon = user_service.update_user_info(user_in)
     return respon

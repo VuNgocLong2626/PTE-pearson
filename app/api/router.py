@@ -9,5 +9,17 @@ from app.api.routers import (
 router = APIRouter()
 
 
-router.include_router(api_basic.router)
-router.include_router(api_user.router)
+router.include_router(
+    api_basic.router,
+    prefix="/basic",
+    tags=["Basic"],
+    responses={404: {"description": "Not found"}}
+)
+
+
+router.include_router(
+    api_user.router,
+    prefix="/users",
+    tags=["Users"],
+    responses={404: {"description": "Not found"}}
+)

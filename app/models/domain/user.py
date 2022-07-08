@@ -3,7 +3,6 @@ from pydantic import (
     Field,
     EmailStr
 )
-from datetime import date
 
 
 class UserUsername(BaseModel):
@@ -15,13 +14,13 @@ class UserUsername(BaseModel):
 
 class UserPassWord(BaseModel):
     password: str = Field(
-        min_length=8, max_length=20,
+        None,
         alias='Password'
     )
 
 
 class DayOfBirth(BaseModel):
-    dob: date = Field(None, alias='DayOfBirth')
+    dob: str = Field(None, alias='DayOfBirth')
 
 
 class FirstName(BaseModel):

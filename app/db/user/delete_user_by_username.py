@@ -1,12 +1,8 @@
-from app.utils.aws.config_dynamodb import table
+from app.utils.aws.helpers import delete_item
 
 
 def delete_user_by_username(
-    username: str
+    pk: str,
+    sk: str
 ) -> None:
-    _ = table.delete_item(
-        Key={
-            "PK": f"USER#{username}",
-            "SK": f"USER#{username}"
-        }
-    )
+    _ = delete_item(pk, sk)

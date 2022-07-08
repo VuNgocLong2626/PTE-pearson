@@ -1,14 +1,8 @@
-from app.utils.aws.config_dynamodb import table
-from app.models.schemas import user as _user_domain
+from app.utils.aws import helpers as _helpers
 
 
 def create_user(
-    user_in: _user_domain.UserCreateInDB
+    user_in: dict
 ) -> None:
-    table.put_item(
-        Item={
-            **user_in.dict(by_alias=True),
-            'DayOfBirth': str(user_in.dob)
-        },
-        ConditionExpression="attribute_not_exists(PK)"
-    )
+    response = _helpers.put_item_not_exists_PK_And_SK(user_in)
+    return response

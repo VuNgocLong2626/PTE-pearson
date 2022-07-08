@@ -1,22 +1,21 @@
-from app.utils.aws.config_dynamodb import table
-from app.models.schemas import user as _user_domain
+from app.utils.aws.dynamodb import table
 
 
 def update_info_user(
-    user_in: _user_domain.UserUpdateInfoInDB
+    user_in: dict
 ):
-    respon = table.update_item(
+    date = table.update_item(
         Key={
-            "PK": user_in.pk,
-            "SK": user_in.sk
+            "PK": user_in.get('pk'),
+            "SK": user_in.get('sk')
         },
         UpdateExpression="SET #fn = :first_name, #ls = :last_name,\
                                 #e = :email, #dob = :birth",
         ExpressionAttributeValues={
-            ':first_name': user_in.first_name,
-            ':last_name': user_in.last_name,
-            ':email': user_in.email,
-            ':birth': str(user_in.dob),
+            ':first_name': user_in.get('first_name'),
+            ':last_name': user_in.get('last_name'),
+            ':email': user_in.get('email'),
+            ':birth': str(user_in.get('dob')),
         },
         ExpressionAttributeNames={
             "#fn": "FirstName",
@@ -26,4 +25,8 @@ def update_info_user(
         },
         ReturnValues="UPDATED_NEW"
     )
-    return respon
+    response = date.get('Attributes')
+    response.update({
+        "Username": user_in.get('username')
+    })
+    return response
