@@ -1,5 +1,5 @@
 from app.models.schemas import part as _part_schemas
-from app.utils.aws.config_dynamodb import table
+from app.utils.aws.dynamodb import table
 
 
 def create_part(

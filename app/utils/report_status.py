@@ -34,9 +34,6 @@ def delete_done(name: str):
         detail=f"Delete Done {name}",
         headers={"WWW-Authenticate": "Bearer"},
     )
-<<<<<<< HEAD
-    raise credentials_exception
-=======
     raise credentials_exception
 
 
@@ -47,4 +44,3 @@ def create_done(name: str):
         headers={"WWW-Authenticate": "Bearer"},
     )
     raise credentials_exception
->>>>>>> dev

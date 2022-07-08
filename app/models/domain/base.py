@@ -15,3 +15,7 @@ class GlobalSecondaryIndexesPartitionKey(BaseModel):
 
 class GlobalSecondaryIndexesSortKey(BaseModel):
     gsi1sk: str = Field(None, alias="GSI1SK")
+
+
+class IdPart(BaseModel):
+    id_part: str = Field(..., alias="IdPart")
