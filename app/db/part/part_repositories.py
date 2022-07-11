@@ -6,6 +6,8 @@ from app.db.part.get_part_by_id \
     import get_part_by_id as _get_info
 from app.db.part.get_all_info_part \
     import get_all_info_part as _get_all_info_part
+from app.db.part.update_info_part \
+    import update_part as _update_part
 
 
 class PartRepositories():
@@ -37,4 +39,11 @@ class PartRepositories():
         self
     ) -> list:
         response = _get_all_info_part()
+        return response
+
+    def update_part(
+        self,
+        part_in: dict
+    ) -> dict:
+        response = _update_part(part_in)
         return response

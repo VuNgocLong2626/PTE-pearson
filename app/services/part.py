@@ -42,3 +42,12 @@ class PartService():
     ) -> list:
         response = part_repositories.get_all_info()
         return response
+
+    def update_part(
+        self,
+        part_in: _part_schemas.PartDetail
+    ):
+        part = _part.PartEntity(**part_in.dict(by_alias=True))
+        self.get_info_part(part.id_part)
+        _ = part_repositories.update_part(part.dict(by_alias=True))
+        return {'message': 'Update successfully'}

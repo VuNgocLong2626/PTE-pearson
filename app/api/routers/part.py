@@ -42,3 +42,11 @@ async def get_info_part_by_id(id_part: str):
 async def get_all():
     response = part_service.get_all_info_part()
     return response
+
+
+@router.put(
+    "/update-info-part"
+)
+async def update_info_part(part_in: _part_schemas.PartDetail):
+    response = part_service.update_part(part_in)
+    return response

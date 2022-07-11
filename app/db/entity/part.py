@@ -10,7 +10,8 @@ class PartEntity(
     def __init__(self, *args, **kwargs):
 
         super().__init__(**kwargs)
-        self.id_part = str(Ksuid())
+        if not self.id_part:
+            self.id_part = str(Ksuid())
         self.pk = f'PART#{self.id_part}'
         self.sk = f'PART#{self.id_part}'
 
