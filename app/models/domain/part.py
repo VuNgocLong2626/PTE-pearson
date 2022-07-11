@@ -14,7 +14,11 @@ class Title(BaseModel):
 
 
 class Time(BaseModel):
-    time: str = Field(..., alias='Time')
+    time: str = Field(
+        ...,
+        example='00:12:00',
+        alias='Time'
+    )
 
 
 class Scores(BaseModel):

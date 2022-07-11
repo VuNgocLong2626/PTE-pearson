@@ -4,17 +4,16 @@ from app.models.domain import (
 )
 
 
-class PartCreatInDB(
-    _base.PartitionKey, _base.SortKey,
+class PartCreat(
     _part_domain.Time, _part_domain.Title,
-    _part_domain.PartName, _base.IdPart
+    _part_domain.PartName
 ):
     pass
 
 
-class PartCreat(
+class PartCreatInDB(
     _part_domain.Time, _part_domain.Title,
-    _part_domain.PartName
+    _part_domain.PartName, _base.IdPart
 ):
     pass
 

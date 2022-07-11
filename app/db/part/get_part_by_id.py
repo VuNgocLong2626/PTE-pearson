@@ -1,12 +1,18 @@
-from app.models.schemas import part as _part_schemas
-from app.utils.aws.config_dynamodb import table
+from app.utils.aws.dynamodb import table
 from boto3.dynamodb.conditions import Key
+from app.utils import report_status
 
 
-def get_part_by_id(id_part: str):
-    info_part = table.query(
-        KeyConditionExpression=Key("PK").eq(f"PART#{id_part}") &
-        Key("SK").eq(f"PART#{id_part}")
-    )
-    respon = info_part["Items"]
-    return respon
+def get_part_by_id(
+    pk: str,
+    sk: str
+) -> dict:
+    try:
+        info_part = table.query(
+            KeyConditionExpression=Key("PK").eq(pk) &
+            Key("SK").eq(sk)
+        )
+        respon = info_part["Items"][0]
+        return respon
+    except Exception:
+        _ = report_status.get_exception("Part")
