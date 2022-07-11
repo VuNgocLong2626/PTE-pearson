@@ -34,6 +34,30 @@ def put_item_not_exists_PK(
 def put_item(
     item: dict
 ) -> None:
-    table.put_item(
+    _ = table.put_item(
         Item=item
     )
+
+
+def put_item_w(
+    item: dict
+) -> None:
+    with table.batch_write as batch:
+        batch.put_item(
+            Item=item
+        )
+    response = item
+    return response
+
+
+def update_item(
+    item: dict
+) -> None:
+    response = table.update_item(
+        Key={
+            'PK': item.pop('pk'),
+            'SK': item.pop('sk')
+        },
+        AttributeUpdates=item
+    )
+    return response

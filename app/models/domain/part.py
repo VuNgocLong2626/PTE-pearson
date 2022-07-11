@@ -1,8 +1,9 @@
 from pydantic import BaseModel, Field
+from datetime import time as _time
 
 
-class NamePart(BaseModel):
-    name_part: str = Field(
+class PartName(BaseModel):
+    part_name: str = Field(
         min_length=2, max_length=20,
         alias='NamePart'
     )
@@ -13,7 +14,11 @@ class Title(BaseModel):
 
 
 class Time(BaseModel):
-    time: str = Field(..., alias='Time')
+    time: str = Field(
+        ...,
+        example='00:12:00',
+        alias='Time'
+    )
 
 
 class Scores(BaseModel):
