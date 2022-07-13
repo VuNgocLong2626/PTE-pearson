@@ -19,3 +19,7 @@ class GlobalSecondaryIndexesSortKey(BaseModel):
 
 class IdPart(BaseModel):
     id_part: str = Field(None, alias="IdPart")
+
+
+class IdType(BaseModel):
+    id_type: str = Field(None, alias="IdType")
