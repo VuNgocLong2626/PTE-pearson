@@ -23,3 +23,7 @@ class IdPart(BaseModel):
 
 class IdQuestion(BaseModel):
     id_question: str = Field(None, alias="IdQuestion")
+
+
+class IdType(BaseModel):
+    id_type: str = Field(None, alias="IdType")
