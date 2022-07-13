@@ -3,7 +3,8 @@ from fastapi import APIRouter
 from app.api.routers import (
     basic as api_basic,
     part as api_part,
-    user as api_user
+    user as api_user,
+    question as api_question
 )
 
 
@@ -29,5 +30,13 @@ router.include_router(
     api_part.router,
     prefix="/part",
     tags=["Part"],
+    responses={404: {"description": "Not found"}}
+)
+
+
+router.include_router(
+    api_question.router,
+    prefix="/question",
+    tags=["Question"],
     responses={404: {"description": "Not found"}}
 )
