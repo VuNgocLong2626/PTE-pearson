@@ -1,10 +1,5 @@
-import boto3
 import os
 from pydantic import BaseSettings
-
-
-my_session = boto3.session.Session()
-my_region = my_session.region_name
 
 
 class Settings(BaseSettings):
@@ -18,14 +13,16 @@ class Settings(BaseSettings):
 
 
 class DevSettings(Settings):
-    region_name = my_region
+    region_name = 'ap-southeast-1'
     dynamo_link = 'devdynamo'
+    buckets = 'pte-question'
     table = 'PTE'
 
 
 class StagingSettings(Settings):
-    region_name = my_region
+    region_name = 'ap-southeast-1'
     dynamo_link = 'stagingdynamo'
+    buckets = 'pte-question'
     table = 'PTE-Stagting'
 
 

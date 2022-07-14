@@ -21,5 +21,9 @@ class IdPart(BaseModel):
     id_part: str = Field(None, alias="IdPart")
 
 
+class IdQuestion(BaseModel):
+    id_question: str = Field(None, alias="IdQuestion")
+
+
 class IdType(BaseModel):
     id_type: str = Field(None, alias="IdType")
