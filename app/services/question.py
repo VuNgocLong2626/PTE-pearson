@@ -51,14 +51,12 @@ class QuestionService():
     def delete_question(
         self,
         id_question: str
-    ):
+    ) -> dict:
         question = self.get_info_question_by_id(id_question)
         _ = question_repositories.delete_question(
-            question.get('pk'),
-            question.get('sk')
+            question.get('PK'),
+            question.get('SK')
         )
-        path = question.get('path')
-        _ = _aws_s3.delete_file(path)
         return {'message': 'delete successfully'}
 
     def check_question(
@@ -72,7 +70,7 @@ class QuestionService():
         self,
         question_in: _question_schemas.QuestionUpdate,
         file: UploadFile
-    ):
+    ) -> dict:
         _ = self.check_question(question_in.id_question)
         _ = type_service.get_info_type_by_id(question_in.id_type)
 
@@ -84,25 +82,6 @@ class QuestionService():
         _ = question_repositories.update_question(question.dict(by_alias=True))
         return {'message': 'update successfully'}
 
-    def get_info_by_id(
-        self,
-        id_question: str
-    ):
-        pk, sk = _question.QuestionEntity.get_pk_and_sk(id_question)
-
-        return pk
-
-    def get_file(
-        self
-    ):
-        response = _aws_s3.create_presigned_url(
-            'toiec.mp3'
-        )
-        print(type(response))
-        return response
-
-    def detete_file(
-        self
-    ):
-        response = _aws_s3.delete_file('toiec.mp3')
+    def get_all_question(self) -> list:
+        response = question_repositories.get_all_question()
         return response

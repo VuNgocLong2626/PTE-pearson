@@ -72,3 +72,22 @@ async def update_question_info(
     })
     response = question_service.update_question(question_in, file)
     return response
+
+
+@router.delete(
+    "/delete-question"
+)
+async def delete_question(
+    id_question: str
+):
+    response = question_service.delete_question(id_question)
+    return response
+
+
+@router.get(
+    "/get-all-question",
+    response_model=List[_question_schemas.QuestionDetail]
+)
+async def get_all_question():
+    resopnse = question_service.get_all_question()
+    return resopnse

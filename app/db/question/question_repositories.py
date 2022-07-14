@@ -1,6 +1,6 @@
 from app.utils.aws import helpers
 from app.utils import report_status
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 from app.utils.aws.dynamodb import table
 
 
@@ -57,3 +57,12 @@ class QuestionRepositories():
         question_in: dict
     ) -> None:
         _ = helpers.put_item(question_in)
+
+    def get_all_question(self) -> list:
+        try:
+            all_info_type = table.scan(
+                FilterExpression=Attr('PK').begins_with('QUESTION#')
+            )
+            return all_info_type['Items']
+        except Exception:
+            _ = report_status.get_exception("Type")
