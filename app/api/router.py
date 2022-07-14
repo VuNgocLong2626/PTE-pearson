@@ -5,7 +5,8 @@ from app.api.routers import (
     part as api_part,
     user as api_user,
     question as api_question,
-    type as api_type
+    type as api_type,
+    test as api_test,
 )
 
 
@@ -46,5 +47,12 @@ router.include_router(
     api_type.router,
     prefix="/type",
     tags=["Type"],
+    responses={404: {"description": "Not found"}}
+)
+
+router.include_router(
+    api_test.router,
+    prefix="/test",
+    tags=["Test"],
     responses={404: {"description": "Not found"}}
 )

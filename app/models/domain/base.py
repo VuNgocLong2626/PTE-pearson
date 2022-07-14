@@ -27,3 +27,7 @@ class IdQuestion(BaseModel):
 
 class IdType(BaseModel):
     id_type: str = Field(None, alias="IdType")
+
+
+class IdTest(BaseModel):
+    id_test: str = Field(None, alias="IdTest")

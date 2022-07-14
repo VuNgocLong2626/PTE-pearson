@@ -10,11 +10,15 @@ class Title(BaseModel):
 
 
 class Time(BaseModel):
-    time: str = Field(..., alias='Time')
+    time: str = Field(
+        ...,
+        example='01:30:30',
+        alias='Time'
+    )
 
 
 class Scores(BaseModel):
-    scores: int = Field(..., alias='Scores')
+    scores: int = Field(None, alias='Scores')
 
 
 class QuantityQuestion(BaseModel):

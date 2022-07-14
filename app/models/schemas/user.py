@@ -25,3 +25,9 @@ class UserUpdateInfo(
     _user_domain.UserUsername
 ):
     pass
+
+
+class UserBasic(
+    _user_domain.UserUsername
+):
+    pass
