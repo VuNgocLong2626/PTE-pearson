@@ -61,3 +61,12 @@ def update_item(
         AttributeUpdates=item
     )
     return response
+
+
+def put_item_not_exists_SK(
+    item: dict
+) -> None:
+    table.put_item(
+        Item=item,
+        ConditionExpression="attribute_not_exists(SK)"
+    )

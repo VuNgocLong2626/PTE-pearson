@@ -1,11 +1,16 @@
 from app.models.schemas import test as _test_schemas
-from app.db.entity import test as _test
 from app.db.test.test_repositories import TestRespositories
 from app.services.user import UserService
+from app.db.entity import (
+    test as _test,
+    test_part as _test_part
+)
+from app.services.part import PartService
 
 
 test_respositories = TestRespositories()
 user_services = UserService()
+part_services = PartService()
 
 
 class TestService():
@@ -66,3 +71,14 @@ class TestService():
             'ListTest': list_test
         })
         return response
+
+    def more_part(
+        self,
+        part_in: _test_schemas.TestMorePartIn
+    ):
+        self.check_test_info(part_in.id_test)
+        part_services.get_info_part(part_in.id_part)
+
+        part = _test_part.TestPartEntity(**part_in.dict(by_alias=True))
+        _ = test_respositories.more_part_to_the_test(part.dict(by_alias=True))
+        return {'message': 'more part successfully'}

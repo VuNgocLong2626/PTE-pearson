@@ -51,3 +51,11 @@ async def update_test_info(test_in: _test_schemas.TestDetail):
 async def search_user_create(username: str):
     response = test_service.sreach_user_create_test(username)
     return response
+
+
+@router.post(
+    "/more-part"
+)
+async def more_part(part_in: _test_schemas.TestMorePartIn):
+    response = test_service.more_part(part_in)
+    return response

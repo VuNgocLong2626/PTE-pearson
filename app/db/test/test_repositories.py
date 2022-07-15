@@ -62,3 +62,13 @@ class TestRespositories():
             return response
         except Exception:
             report_status.get_exception('Test')
+
+    def more_part_to_the_test(
+        self,
+        part_in: dict
+    ):
+        try:
+            _ = helpers.put_item_not_exists_PK(part_in)
+        except Exception:
+            _ = report_status.create_exception('More Part')
+
