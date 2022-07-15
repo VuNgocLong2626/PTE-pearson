@@ -44,7 +44,25 @@ class TestService():
         self,
         test_in: _test_schemas.TestDetail
     ) -> dict:
+        user_services.get_info_user(test_in.username)
         self.check_test_info(test_in.id_test)
         test = _test.TestEntity(**test_in.dict(by_alias=True))
         _ = test_respositories.update_test(test.dict(by_alias=True))
         return {'message': 'update successfully'}
+
+    def sreach_user_create_test(
+        self,
+        username: str
+    ) -> dict:
+        response = {}
+        gsi1pk = _test.TestEntity.get_gsipk(username)
+        test_all = test_respositories.sreach_user_create_test(gsi1pk)
+        list_test = list(
+            map(lambda item: _test_schemas.TestDetailOfUserCreate(**item),
+                test_all)
+        )
+        response.update({
+            'Username': username,
+            'ListTest': list_test
+        })
+        return response

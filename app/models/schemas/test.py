@@ -15,6 +15,14 @@ class TestCreate(
 class TestDetail(
     _test_domain.NameTest, _test_domain.Title,
     _test_domain.Time, _test_domain.Scores,
+    _base_domain.IdTest, _user_schemas.UserBasic
+):
+    pass
+
+
+class TestDetailOfUserCreate(
+    _test_domain.NameTest, _test_domain.Title,
+    _test_domain.Time, _test_domain.Scores,
     _base_domain.IdTest
 ):
     pass

@@ -18,7 +18,7 @@ class TestRespositories():
 
     def get_all_test_info(
         self
-    ):
+    ) -> list:
         try:
             info_test = table.scan(
                 FilterExpression=Attr('PK').begins_with('TEST#')
@@ -32,13 +32,33 @@ class TestRespositories():
         self,
         pk: str,
         sk: str,
-    ):
+    ) -> dict:
         try:
             info_test = table.query(
                 KeyConditionExpression=Key("PK").eq(pk) &
                 Key("SK").eq(sk)
             )
             response = info_test['Items'][0]
+            return response
+        except Exception:
+            report_status.get_exception('Test')
+
+    def update_test(
+        self,
+        test_info: dict
+    ) -> None:
+        _ = helpers.put_item(test_info)
+
+    def sreach_user_create_test(
+        self,
+        gsi1pk: str
+    ) -> list:
+        try:
+            info_test = table.query(
+                IndexName="GSI1",
+                KeyConditionExpression=Key("GSI1PK").eq(gsi1pk)
+            )
+            response = info_test['Items']
             return response
         except Exception:
             report_status.get_exception('Test')
